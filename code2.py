@@ -7,8 +7,6 @@ import digitalio
 from analogio import AnalogIn
 import adafruit_matrixkeypad
 
-
-
 # -----------------------------------------------------------------
 # State machine using dictonary definitions, as Python does not have switch statements
 
@@ -51,6 +49,7 @@ def idle_state():
     # will be polling loop for global vars
     pass
 
+
 def test_ir_reading():
     pulsein = pulseio.PulseIn(board.REMOTEIN, maxlen=120, idle_state=True)
     decoder = adafruit_irremote.GenericDecode()
@@ -64,7 +63,7 @@ def test_ir_reading():
 
         pulses = decoder.read_pulses(pulsein)
         print("Heard", len(pulses), "Pulses:", pulses)
-        
+
         try:
             code = decoder.decode_bits(pulses)
 
@@ -75,13 +74,13 @@ def test_ir_reading():
 
             # pulses, code = saved_data[0]
 
-
             print("Decoded:", code)
-            
+
         except adafruit_irremote.IRNECRepeatException:  # unusual short code!
             print("NEC repeat!")
         except adafruit_irremote.IRDecodeException as e:  # failed to decode
             print("Failed to decode: ", e.args)
+
 
 def battery_check_state():
     battery_voltage_pin = AnalogIn(board.AD0)
@@ -129,7 +128,6 @@ while programRunning:
     try:
         # put any code that will run regardless of deviceState in this method
         continuous_updates()
-        
 
         if deviceState == 0:
             idle_state()
@@ -200,11 +198,11 @@ while programRunning:
 # --------------------------------------------------------------------------------------
 # Keyboard matrix setup
 
-# cols = [digitalio.DigitalInOut(x) for x in (board.D4, board.D5)]  # Columns with corresponding pins, in digital mode
-# rows = [digitalio.DigitalInOut(x) for x in
-#         (board.D0, board.D1, board.D4, board.D6)]  # Rows with corresponding pins in digital modes
-# keys = (('Power', 'Source'),  # Set up up as seen in remote diagram
-#         ('Volume+', 'VChannel+')
-#         ('Volume-', 'Channel-')
-#         ('F1', 'F2')
-#         ('F3', 'F4'))
+cols = [digitalio.DigitalInOut(x) for x in (board.D4, board.D5)]  # Columns with corresponding pins, in digital mode
+rows = [digitalio.DigitalInOut(x) for x in
+        (board.D0, board.D1, board.D4, board.D6)]  # Rows with corresponding pins in digital modes
+keys = (('Power', 'Source'),  # Set up up as seen in remote diagram
+        ('Volume+', 'VChannel+'),
+        ('Volume-', 'Channel-'),
+        ('F1', 'F2'),
+        ('F3', 'F4'))
