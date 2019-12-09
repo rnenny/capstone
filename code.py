@@ -6,8 +6,31 @@ from digitalio import DigitalInOut, Direction, Pull
 import adafruit_irremote
 import adafruit_matrixkeypad
 
+# --------------------------------------------------------------------
+# RGB LED code section. See schematic for pin usage
+# Red - D9
+# Green - D10
+# Blue - D5 
+# NEEDED TO INITILIZED PIN VALUES OR WONKY STUFF HAPPENS 
+# CircuitPython takes care of active low pins interanally?
+# In this case False = False, as it would on active high pins 
+red = DigitalInOut(board.D9)
+red.direction = Direction.OUTPUT
+red.value = False
+
+green =DigitalInOut(board.D10)
+green.direction = Direction.OUTPUT
+green.value = False
+
+blue = DigitalInOut(board.D5)
+blue.direction = Direction.OUTPUT
+blue.value = False
+
+# --------------------------------------------------------------------
+
 led = DigitalInOut(board.D13)
 led.direction = Direction.OUTPUT
+# led.value = True
 
 cols = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1)]
 rows = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
@@ -23,10 +46,10 @@ keyPressed = False
 
 while True:
     # Blink LED
-    # led.value = True
-    # time.sleep(0.2)
-    # led.value = False
-    # time.sleep(0.2)
+    led.value = True
+    time.sleep(0.2)
+    led.value = False
+    time.sleep(0.2)
 
     # this will be a list of returned keys'; [..., ...]
     keys = keypad.pressed_keys
