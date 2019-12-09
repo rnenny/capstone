@@ -1,5 +1,4 @@
-# Write your code here :-)
-# CircuitPython IO demo #1 - General Purpose I/O
+
 import time
 import board
 from digitalio import DigitalInOut, Direction, Pull
@@ -28,10 +27,34 @@ programRunning = True
 
 deviceState = 0
 
-# LED light
-led = DigitalInOut(board.D13)
-led.direction = Direction.OUTPUT
+# LED light    decoder = adafruit_irremote.GenericDecode()
 
+    # size must match
+    # size must match
+#ze must match  -----------------------------------------------------------------------
+#SMD LED on P13
+led = DigitalInOut(board.D13)
+ldef test_ir_reading():
+    pulsein    # size must match    size must # 
+def idle_state():
+    # check from inputs from all oth        # this array will contain tuples ex. (data, data, etc...)
+        saved_datawhat you are decoding! for NEC use 4
+
+i   whi:
+       er states
+    # will be polling loop for global vars
+    pass
+
+
+def test_ir_reading():
+
+    while True:
+        #    whle True:
+     pulseinl        # this array will contain tuples ex. (data, data, etc...)
+       saved_datled.direction = Direction.OUTPUT
+
+
+#----------------------------------------------------------------------------------
 """ Functions """
 
 
@@ -49,7 +72,6 @@ def idle_state():
     # will be polling loop for global vars
     pass
 
-
 def test_ir_reading():
     pulsein = pulseio.PulseIn(board.REMOTEIN, maxlen=120, idle_state=True)
     decoder = adafruit_irremote.GenericDecode()
@@ -63,7 +85,7 @@ def test_ir_reading():
 
         pulses = decoder.read_pulses(pulsein)
         print("Heard", len(pulses), "Pulses:", pulses)
-
+        
         try:
             code = decoder.decode_bits(pulses)
 
@@ -74,13 +96,13 @@ def test_ir_reading():
 
             # pulses, code = saved_data[0]
 
-            print("Decoded:", code)
 
+            print("Decoded:", code)
+            
         except adafruit_irremote.IRNECRepeatException:  # unusual short code!
             print("NEC repeat!")
         except adafruit_irremote.IRDecodeException as e:  # failed to decode
             print("Failed to decode: ", e.args)
-
 
 def battery_check_state():
     battery_voltage_pin = AnalogIn(board.AD0)
@@ -89,32 +111,42 @@ def battery_check_state():
 
     if battery_voltage < 2.2:
         ledBlinkCount = 10
-        while ledBlinkCount > 0:
+        while ledBlinirection = Direction.OUTPUT
+
+""# LED light
+led = DikCount > 0:
             led.value = True
             time.sleep(0.015)
             led.value = False
-            ledBlinkCount -= 1
+            ledBlinkCboard.D13)
+led.ount -= 1
 
     count = 10
     while count > 0:
-        print(battery_voltage_pin.value)
+        print(batteryfunction converts value from a_voltage_pin.value)
         count -= 1
         time.sleep(0.1)
 
 
 def device_1_state():
-    pass
+    
+ to a voltage between 0-3.3V
+def     pass
+    
 
 
 def device_2_state():
+    
     pass
 
 
 def device_3_state():
+    
     pass
 
 
 def device_programming_state():
+    
     pass
 
 
@@ -128,6 +160,7 @@ while programRunning:
     try:
         # put any code that will run regardless of deviceState in this method
         continuous_updates()
+        
 
         if deviceState == 0:
             idle_state()
@@ -190,11 +223,6 @@ while programRunning:
 #     time.sleep(0.4)
 
 #     print(red.value)
-#     red.value = 1
-#     #time.sleep(0.4)
-#     #red.value = 0
-
-
 # --------------------------------------------------------------------------------------
 # Keyboard matrix setup
 
