@@ -1,0 +1,711 @@
+EESchema Schematic File Version 4
+LIBS:keyboard-layout-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L keyboard_parts:KEYSW K_0
+U 1 1 69370EFB
+P 2000 2000
+F 0 "K_0" H 2000 2233 60  0000 C CNN
+F 1 "KEYSW" H 2000 1900 60  0001 C CNN
+F 2 "MX_ALPS_Hybrid:MX-1U-NoLED" H 2000 2000 60  0001 C CNN
+F 3 "" H 2000 2000 60  0000 C CNN
+	1    2000 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_10
+U 1 1 5DB6F9C6
+P 1650 2250
+F 0 "D_10" V 1696 2171 50  0000 R CNN
+F 1 "1N4148" V 1595 2171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 1650 2250 50  0001 C CNN
+F 3 "~" H 1650 2250 50  0001 C CNN
+	1    1650 2250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1400 2400 0    50   Input ~ 0
+row0
+Wire Wire Line
+	1400 2400 1650 2400
+Text GLabel 2300 1650 0    50   Input ~ 0
+col0
+Wire Wire Line
+	2300 1650 2300 2000
+Wire Wire Line
+	1700 2000 1650 2000
+Wire Wire Line
+	1650 2000 1650 2100
+Connection ~ 2300 2000
+Connection ~ 1650 2400
+$Comp
+L keyboard_parts:KEYSW K_1
+U 1 1 6937E585
+P 3000 2000
+F 0 "K_1" H 3000 2233 60  0000 C CNN
+F 1 "KEYSW" H 3000 1900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 3000 2000 60  0001 C CNN
+F 3 "" H 3000 2000 60  0000 C CNN
+	1    3000 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_1
+U 1 1 5DB6F9CE
+P 2650 2250
+F 0 "D_1" V 2696 2171 50  0000 R CNN
+F 1 "1N4148" V 2595 2171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 2650 2250 50  0001 C CNN
+F 3 "~" H 2650 2250 50  0001 C CNN
+	1    2650 2250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1650 2400 2650 2400
+Text GLabel 3300 1650 0    50   Input ~ 0
+col1
+Wire Wire Line
+	3300 1650 3300 2000
+Wire Wire Line
+	2700 2000 2650 2000
+Wire Wire Line
+	2650 2000 2650 2100
+Connection ~ 3300 2000
+$Comp
+L keyboard_parts:KEYSW K_2
+U 1 1 6937B7DC
+P 2000 3000
+F 0 "K_2" H 2000 3233 60  0000 C CNN
+F 1 "KEYSW" H 2000 2900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 2000 3000 60  0001 C CNN
+F 3 "" H 2000 3000 60  0000 C CNN
+	1    2000 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_2
+U 1 1 5DB6F9CC
+P 1650 3250
+F 0 "D_2" V 1696 3171 50  0000 R CNN
+F 1 "1N4148" V 1595 3171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 1650 3250 50  0001 C CNN
+F 3 "~" H 1650 3250 50  0001 C CNN
+	1    1650 3250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1400 3400 0    50   Input ~ 0
+row1
+Wire Wire Line
+	1400 3400 1650 3400
+Wire Wire Line
+	2300 2000 2300 3000
+Wire Wire Line
+	1700 3000 1650 3000
+Wire Wire Line
+	1650 3000 1650 3100
+Connection ~ 2300 3000
+Connection ~ 1650 3400
+$Comp
+L keyboard_parts:KEYSW K_3
+U 1 1 6937ECC0
+P 3000 3000
+F 0 "K_3" H 3000 3233 60  0000 C CNN
+F 1 "KEYSW" H 3000 2900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 3000 3000 60  0001 C CNN
+F 3 "" H 3000 3000 60  0000 C CNN
+	1    3000 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_3
+U 1 1 5DB6F9CF
+P 2650 3250
+F 0 "D_3" V 2696 3171 50  0000 R CNN
+F 1 "1N4148" V 2595 3171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 2650 3250 50  0001 C CNN
+F 3 "~" H 2650 3250 50  0001 C CNN
+	1    2650 3250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1650 3400 2650 3400
+Wire Wire Line
+	3300 2000 3300 3000
+Wire Wire Line
+	2700 3000 2650 3000
+Wire Wire Line
+	2650 3000 2650 3100
+Connection ~ 3300 3000
+$Comp
+L keyboard_parts:KEYSW K_4
+U 1 1 69377DBA
+P 2000 4000
+F 0 "K_4" H 2000 4233 60  0000 C CNN
+F 1 "KEYSW" H 2000 3900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 2000 4000 60  0001 C CNN
+F 3 "" H 2000 4000 60  0000 C CNN
+	1    2000 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_4
+U 1 1 5DB6F9C9
+P 1650 4250
+F 0 "D_4" V 1696 4171 50  0000 R CNN
+F 1 "1N4148" V 1595 4171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 1650 4250 50  0001 C CNN
+F 3 "~" H 1650 4250 50  0001 C CNN
+	1    1650 4250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1400 4400 0    50   Input ~ 0
+row2
+Wire Wire Line
+	1400 4400 1650 4400
+Wire Wire Line
+	2300 3000 2300 4000
+Wire Wire Line
+	1700 4000 1650 4000
+Wire Wire Line
+	1650 4000 1650 4100
+Connection ~ 2300 4000
+Connection ~ 1650 4400
+$Comp
+L keyboard_parts:KEYSW K_5
+U 1 1 5DB6F9C8
+P 3000 4000
+F 0 "K_5" H 3000 4233 60  0000 C CNN
+F 1 "KEYSW" H 3000 3900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 3000 4000 60  0001 C CNN
+F 3 "" H 3000 4000 60  0000 C CNN
+	1    3000 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_5
+U 1 1 69375EAB
+P 2650 4250
+F 0 "D_5" V 2696 4171 50  0000 R CNN
+F 1 "1N4148" V 2595 4171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 2650 4250 50  0001 C CNN
+F 3 "~" H 2650 4250 50  0001 C CNN
+	1    2650 4250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1650 4400 2650 4400
+Wire Wire Line
+	3300 3000 3300 4000
+Wire Wire Line
+	2700 4000 2650 4000
+Wire Wire Line
+	2650 4000 2650 4100
+Connection ~ 3300 4000
+$Comp
+L keyboard_parts:KEYSW K_6
+U 1 1 69379379
+P 2000 5000
+F 0 "K_6" H 2000 5233 60  0000 C CNN
+F 1 "KEYSW" H 2000 4900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 2000 5000 60  0001 C CNN
+F 3 "" H 2000 5000 60  0000 C CNN
+	1    2000 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_6
+U 1 1 5DB6F9CA
+P 1650 5250
+F 0 "D_6" V 1696 5171 50  0000 R CNN
+F 1 "1N4148" V 1595 5171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 1650 5250 50  0001 C CNN
+F 3 "~" H 1650 5250 50  0001 C CNN
+	1    1650 5250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1400 5400 0    50   Input ~ 0
+row3
+Wire Wire Line
+	1400 5400 1650 5400
+Wire Wire Line
+	2300 4000 2300 5000
+Wire Wire Line
+	1700 5000 1650 5000
+Wire Wire Line
+	1650 5000 1650 5100
+Connection ~ 2300 5000
+Connection ~ 1650 5400
+$Comp
+L keyboard_parts:KEYSW K_7
+U 1 1 5DB6F9C7
+P 3000 5000
+F 0 "K_7" H 3000 5233 60  0000 C CNN
+F 1 "KEYSW" H 3000 4900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 3000 5000 60  0001 C CNN
+F 3 "" H 3000 5000 60  0000 C CNN
+	1    3000 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_7
+U 1 1 69372F3E
+P 2650 5250
+F 0 "D_7" V 2696 5171 50  0000 R CNN
+F 1 "1N4148" V 2595 5171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 2650 5250 50  0001 C CNN
+F 3 "~" H 2650 5250 50  0001 C CNN
+	1    2650 5250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1650 5400 2650 5400
+Wire Wire Line
+	3300 4000 3300 5000
+Wire Wire Line
+	2700 5000 2650 5000
+Wire Wire Line
+	2650 5000 2650 5100
+Connection ~ 3300 5000
+$Comp
+L keyboard_parts:KEYSW K_8
+U 1 1 5DB6F9CB
+P 2000 6000
+F 0 "K_8" H 2000 6233 60  0000 C CNN
+F 1 "KEYSW" H 2000 5900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 2000 6000 60  0001 C CNN
+F 3 "" H 2000 6000 60  0000 C CNN
+	1    2000 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_8
+U 1 1 6937B199
+P 1650 6250
+F 0 "D_8" V 1696 6171 50  0000 R CNN
+F 1 "1N4148" V 1595 6171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 1650 6250 50  0001 C CNN
+F 3 "~" H 1650 6250 50  0001 C CNN
+	1    1650 6250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1400 6400 0    50   Input ~ 0
+row4
+Wire Wire Line
+	1400 6400 1650 6400
+Wire Wire Line
+	2300 5000 2300 6000
+Wire Wire Line
+	1700 6000 1650 6000
+Wire Wire Line
+	1650 6000 1650 6100
+Connection ~ 1650 6400
+$Comp
+L keyboard_parts:KEYSW K_9
+U 1 1 5DB6F9CD
+P 3000 6000
+F 0 "K_9" H 3000 6233 60  0000 C CNN
+F 1 "KEYSW" H 3000 5900 60  0001 C CNN
+F 2 "MX_Alps_Hybrid:MX-1U-NoLED" H 3000 6000 60  0001 C CNN
+F 3 "" H 3000 6000 60  0000 C CNN
+	1    3000 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D_9
+U 1 1 6937C3D4
+P 2650 6250
+F 0 "D_9" V 2696 6171 50  0000 R CNN
+F 1 "1N4148" V 2595 6171 50  0000 R CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" H 2650 6250 50  0001 C CNN
+F 3 "~" H 2650 6250 50  0001 C CNN
+	1    2650 6250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1650 6400 2650 6400
+Wire Wire Line
+	3300 5000 3300 6000
+Wire Wire Line
+	2700 6000 2650 6000
+Wire Wire Line
+	2650 6000 2650 6100
+$Comp
+L Capstone:RFM9xLoRa U3
+U 1 1 5DB233E3
+P 8300 2450
+F 0 "U3" H 8750 2615 50  0000 C CNN
+F 1 "RFM9xLoRa" H 8750 2524 50  0000 C CNN
+F 2 "Capstone:RFM9x" H 8300 2450 50  0001 C CNN
+F 3 "" H 8300 2450 50  0001 C CNN
+	1    8300 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5DB26809
+P 6000 1650
+F 0 "R4" H 6070 1696 50  0000 L CNN
+F 1 "27" H 6070 1605 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal" V 5930 1650 50  0001 C CNN
+F 3 "~" H 6000 1650 50  0001 C CNN
+	1    6000 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D2
+U 1 1 5DB2831D
+P 6000 2150
+F 0 "D2" V 6039 2033 50  0000 R CNN
+F 1 "LED" V 5948 2033 50  0000 R CNN
+F 2 "LEDs:LED_D5.0mm" H 6000 2150 50  0001 C CNN
+F 3 "~" H 6000 2150 50  0001 C CNN
+	1    6000 2150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:Q_NJFET_GDS Q1
+U 1 1 5DB290DE
+P 5900 2700
+F 0 "Q1" H 6091 2746 50  0000 L CNN
+F 1 "IRLB871" H 6091 2655 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-220-3_Horizontal" H 6100 2800 50  0001 C CNN
+F 3 "~" H 5900 2700 50  0001 C CNN
+	1    5900 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 2300 6000 2500
+Wire Wire Line
+	6000 1800 6000 2000
+Text GLabel 9600 2550 2    50   Input ~ 0
+VBAT
+NoConn ~ 8100 2550
+NoConn ~ 8100 2750
+Text GLabel 6000 1300 0    50   Input ~ 0
+VBAT
+Wire Wire Line
+	6000 1300 6000 1500
+$Comp
+L Interface_Optical:TSOP384xx U1
+U 1 1 5DB358DF
+P 4900 4500
+F 0 "U1" H 4888 4925 50  0000 C CNN
+F 1 "TSOP384xx" H 4888 4834 50  0000 C CNN
+F 2 "Capstone:TSOP384" H 4850 4125 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/82491/tsop382.pdf" H 5550 4800 50  0001 C CNN
+	1    4900 4500
+	1    0    0    -1  
+$EndComp
+Text GLabel 5450 4500 2    50   Output ~ 0
+pin13
+Wire Wire Line
+	5300 4500 5450 4500
+$Comp
+L Interface_Optical:TSMP58000 U2
+U 1 1 5DB46E5D
+P 4850 5500
+F 0 "U2" H 4838 5925 50  0000 C CNN
+F 1 "TSMP58000" H 4838 5834 50  0000 C CNN
+F 2 "Capstone:TSOP384" H 4800 5125 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/82485/tsmp58000.pdf" H 5500 5800 50  0001 C CNN
+	1    4850 5500
+	1    0    0    -1  
+$EndComp
+Text GLabel 5400 5500 2    50   Output ~ 0
+pin12
+Wire Wire Line
+	5250 5500 5400 5500
+$Comp
+L Device:LED_ARGB D1
+U 1 1 5DB4EFC4
+P 4250 2000
+F 0 "D1" V 4296 1670 50  0000 R CNN
+F 1 "LED_ARGB" V 4205 1670 50  0000 R CNN
+F 2 "LEDs:LED_D5.0mm-4" H 4250 1950 50  0001 C CNN
+F 3 "~" H 4250 1950 50  0001 C CNN
+	1    4250 2000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5DB5148C
+P 4050 2550
+F 0 "R1" H 4120 2596 50  0000 L CNN
+F 1 "100" H 4120 2505 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 3980 2550 50  0001 C CNN
+F 3 "~" H 4050 2550 50  0001 C CNN
+	1    4050 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5DB51AFC
+P 4250 2850
+F 0 "R2" H 4320 2896 50  0000 L CNN
+F 1 "22" H 4320 2805 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 4180 2850 50  0001 C CNN
+F 3 "~" H 4250 2850 50  0001 C CNN
+	1    4250 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5DB51F49
+P 4450 3150
+F 0 "R3" H 4520 3196 50  0000 L CNN
+F 1 "22" H 4520 3105 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 4380 3150 50  0001 C CNN
+F 3 "~" H 4450 3150 50  0001 C CNN
+	1    4450 3150
+	1    0    0    -1  
+$EndComp
+Text GLabel 4050 2850 0    50   Input ~ 0
+red
+Text GLabel 4250 3150 0    50   Input ~ 0
+green
+Text GLabel 4450 3450 0    50   Input ~ 0
+blue
+Wire Wire Line
+	4050 2400 4050 2200
+Wire Wire Line
+	4250 2200 4250 2700
+Wire Wire Line
+	4450 2200 4450 3000
+Wire Wire Line
+	4250 3000 4250 3150
+Wire Wire Line
+	4050 2700 4050 2850
+Wire Wire Line
+	4450 3300 4450 3450
+Text GLabel 7950 2950 0    50   Input ~ 0
+row0
+Text GLabel 7950 3050 0    50   Input ~ 0
+row1
+Text GLabel 7950 3150 0    50   Input ~ 0
+row2
+Text GLabel 7950 3250 0    50   Input ~ 0
+row3
+Text GLabel 7950 3450 0    50   Input ~ 0
+col1
+Text GLabel 7950 3350 0    50   Input ~ 0
+col0
+Wire Wire Line
+	7950 2950 8100 2950
+Wire Wire Line
+	7950 3050 8100 3050
+Wire Wire Line
+	7950 3150 8100 3150
+Wire Wire Line
+	7950 3250 8100 3250
+Wire Wire Line
+	7950 3350 8100 3350
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 5DB6FDBE
+P 7950 2550
+F 0 "#FLG02" H 7950 2625 50  0001 C CNN
+F 1 "PWR_FLAG" H 7800 2700 50  0000 C CNN
+F 2 "" H 7950 2550 50  0001 C CNN
+F 3 "~" H 7950 2550 50  0001 C CNN
+	1    7950 2550
+	1    0    0    -1  
+$EndComp
+Text GLabel 9600 2950 2    50   Input ~ 0
+pin12
+Text GLabel 9600 2850 2    50   Input ~ 0
+pin13
+Wire Wire Line
+	9400 2950 9600 2950
+Wire Wire Line
+	9400 2850 9600 2850
+Text GLabel 9600 3250 2    50   Output ~ 0
+red
+Text GLabel 9600 3150 2    50   Output ~ 0
+green
+Text GLabel 9600 3450 2    50   Output ~ 0
+blue
+Wire Wire Line
+	9400 3050 9600 3050
+Wire Wire Line
+	9400 3150 9600 3150
+Wire Wire Line
+	9400 3450 9600 3450
+Wire Wire Line
+	9400 3250 9600 3250
+Text GLabel 9600 3050 2    50   Output ~ 0
+mFET
+Text GLabel 5550 2700 0    50   Input ~ 0
+mFET
+Wire Wire Line
+	5550 2700 5700 2700
+Wire Wire Line
+	7950 3450 8100 3450
+Text GLabel 9600 3350 2    50   Input ~ 0
+row4
+Wire Wire Line
+	9400 3350 9600 3350
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5DB7420B
+P 7300 2700
+F 0 "#FLG01" H 7300 2775 50  0001 C CNN
+F 1 "PWR_FLAG" H 7150 2850 50  0000 C CNN
+F 2 "" H 7300 2700 50  0001 C CNN
+F 3 "~" H 7300 2700 50  0001 C CNN
+	1    7300 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x06 J1
+U 1 1 5DBA6BF4
+P 7750 3850
+F 0 "J1" H 7750 4150 50  0000 C CNN
+F 1 "Conn_01x06" H 7750 4250 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 7750 3850 50  0001 C CNN
+F 3 "~" H 7750 3850 50  0001 C CNN
+	1    7750 3850
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J2
+U 1 1 5DBA8792
+P 9750 3550
+F 0 "J2" H 9830 3542 50  0000 L CNN
+F 1 "Conn_01x02" H 9830 3451 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 9750 3550 50  0001 C CNN
+F 3 "~" H 9750 3550 50  0001 C CNN
+	1    9750 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 3550 7950 3550
+Wire Wire Line
+	7950 3650 8100 3650
+Wire Wire Line
+	7950 3750 8100 3750
+Wire Wire Line
+	7950 3850 8100 3850
+Wire Wire Line
+	7950 3950 8100 3950
+Wire Wire Line
+	7950 4050 8100 4050
+Wire Wire Line
+	9400 3550 9550 3550
+Wire Wire Line
+	9400 3650 9550 3650
+$Comp
+L Connector_Generic:Conn_01x02 J3
+U 1 1 5DBD1308
+P 9750 2650
+F 0 "J3" H 9830 2642 50  0000 L CNN
+F 1 "Conn_01x02" H 9830 2551 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 9750 2650 50  0001 C CNN
+F 3 "~" H 9750 2650 50  0001 C CNN
+	1    9750 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9550 2650 9400 2650
+Wire Wire Line
+	9400 2750 9550 2750
+$Comp
+L keyboard_parts:GND #PWR0101
+U 1 1 5DBDD711
+P 7250 2900
+F 0 "#PWR0101" H 7250 2950 20  0001 C CNN
+F 1 "GND" H 7250 2800 30  0000 C CNN
+F 2 "" H 7250 2900 60  0000 C CNN
+F 3 "" H 7250 2900 60  0000 C CNN
+	1    7250 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 2850 7300 2850
+Wire Wire Line
+	7300 2700 7300 2850
+Connection ~ 7300 2850
+Wire Wire Line
+	6000 2900 6000 3150
+Wire Wire Line
+	9400 2550 9600 2550
+Wire Wire Line
+	7300 2850 8100 2850
+$Comp
+L keyboard_parts:GND #PWR0103
+U 1 1 5DC175BE
+P 5500 5750
+F 0 "#PWR0103" H 5500 5800 20  0001 C CNN
+F 1 "GND" H 5500 5650 30  0000 C CNN
+F 2 "" H 5500 5750 60  0000 C CNN
+F 3 "" H 5500 5750 60  0000 C CNN
+	1    5500 5750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 5700 5500 5700
+$Comp
+L keyboard_parts:GND #PWR0104
+U 1 1 5DC1D901
+P 5550 4750
+F 0 "#PWR0104" H 5550 4800 20  0001 C CNN
+F 1 "GND" H 5550 4650 30  0000 C CNN
+F 2 "" H 5550 4750 60  0000 C CNN
+F 3 "" H 5550 4750 60  0000 C CNN
+	1    5550 4750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 5700 5500 5750
+Wire Wire Line
+	5550 4700 5550 4750
+Wire Wire Line
+	5300 4700 5550 4700
+$Comp
+L keyboard_parts:GND #PWR0108
+U 1 1 5DC40DB6
+P 6000 3150
+F 0 "#PWR0108" H 6000 3200 20  0001 C CNN
+F 1 "GND" H 6000 3050 30  0000 C CNN
+F 2 "" H 6000 3150 60  0000 C CNN
+F 3 "" H 6000 3150 60  0000 C CNN
+	1    6000 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 2850 7250 2900
+Text GLabel 7850 2650 0    50   Input ~ 0
+3V
+Wire Wire Line
+	7850 2650 7950 2650
+Wire Wire Line
+	7950 2550 7950 2650
+Connection ~ 7950 2650
+Wire Wire Line
+	7950 2650 8100 2650
+Text GLabel 4200 1550 0    50   Input ~ 0
+3V
+Wire Wire Line
+	4200 1550 4250 1550
+Wire Wire Line
+	4250 1550 4250 1800
+Text GLabel 5400 5300 2    50   Input ~ 0
+3V
+Wire Wire Line
+	5400 5300 5250 5300
+Text GLabel 5450 4300 2    50   Input ~ 0
+3V
+Wire Wire Line
+	5450 4300 5300 4300
+$EndSCHEMATC
