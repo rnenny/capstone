@@ -226,9 +226,10 @@ while programRunning:
 # --------------------------------------------------------------------------------------
 # Keyboard matrix setup
 
-cols = [digitalio.DigitalInOut(x) for x in (board.D4, board.D5)]  # Columns with corresponding pins, in digital mode
-rows = [digitalio.DigitalInOut(x) for x in
-        (board.D0, board.D1, board.D4, board.D6)]  # Rows with corresponding pins in digital modes
+cols = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1)]
+rows = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
+
+      # Rows with corresponding pins in digital modes
 keys = (('Power', 'Source'),  # Set up up as seen in remote diagram
         ('Volume+', 'VChannel+'),
         ('Volume-', 'Channel-'),

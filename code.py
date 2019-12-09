@@ -26,14 +26,25 @@ blue = DigitalInOut(board.D5)
 blue.direction = Direction.OUTPUT
 blue.value = False
 
-# --------------------------------------------------------------------
-
+# Status / Heartbeat LED init
 led = DigitalInOut(board.D13)
 led.direction = Direction.OUTPUT
 # led.value = True
+# --------------------------------------------------------------------
+#Init IR recievers 
+ir_recieve1 = DigitalInOut(board.D12)
+ir_recieve1.value = 0
+ir_recieve2 = DigitalInOut(board.D13)
+ir_recieve2.value = 0
 
-cols = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1)]
-rows = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
+# --------------------------------------------------------------------
+mfet = DigitalInOut(board.D11)
+mfet.value = 1 
+
+
+
+cols = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
+rows = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1)]
 
 key_dict = {}
 keys = [
