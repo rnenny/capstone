@@ -14,11 +14,13 @@ import adafruit_matrixkeypad
 # NEEDED TO INITILIZED PIN VALUES OR WONKY STUFF HAPPENS
 # CircuitPython takes care of active low pins interanally?
 # In this case False = False, as it would on active high pins
-red = DigitalInOut(board.D9)
-red.direction = Direction.OUTPUT
-red.value = True
 
-green =DigitalInOut(board.D10)
+
+# red = DigitalInOut(board.D9)
+# red.direction = Direction.OUTPUT
+# red.value = True
+
+green = DigitalInOut(board.D10)
 green.direction = Direction.OUTPUT
 green.value = False
 
@@ -31,9 +33,9 @@ led = DigitalInOut(board.D13)
 led.direction = Direction.OUTPUT
 # led.value = True
 # --------------------------------------------------------------------
-#Init IR recievers
-ir_recieve1 = DigitalInOut(board.D12)
-ir_recieve1.direction = Direction.INPUT
+# Init IR recievers
+# ir_recieve1 = DigitalInOut(board.D12)
+# ir_recieve1.direction = Direction.INPUT
 #ir_recieve1.value = 0
 
 #ir_recieve2 = DigitalInOut(board.D13)
@@ -59,19 +61,63 @@ cols = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
 
 keys = [
     ["Power", "Volume+", "Volume-", "F1", "F3"],
-    ["Source", "Channel+", "Channel-", "F2",  "F4" ],
+    ["Source", "Channel+", "Channel-", "F2",  "F4"],
 ]
 
 
 keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, rows, keys)
 keyPressed = False
 
+# IR setup
+pulsein = pulseio.PulseIn(board.D12, maxlen=120, idle_state=True)
+decoder = adafruit_irremote.GenericDecode()
+received_code = bytearray(4) # size must match what you are decoding! for NEC use 4
+
+# Docs for adafruit_irremote: (https://circuitpython.readthedocs.io/projects/irremote/en/latest/api.html#implementation-notes)
+# Article for IR Apple Remote Code: https://www.hackster.io/BlitzCityDIY/circuit-python-ir-remote-for-apple-tv-e97ea0
+# IR Test Code (Apple Remote): https://github.com/BlitzCityDIY/Circuit-Python-Apple-TV-IR-Remote/blob/master/ciruitPython_appleTv_IR-Remote
+# pwm out test
+OKAY = bytearray(b'\x88\x1e\xc5 ') #decoded [136, 30, 197, 32]
+remote = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
+pwm = pulseio.PWMOut(board.D9, frequency = 38000, duty_cycle = 2 ** 15)
+
 while True:
     # Blink LED
     led.value = True
-    time.sleep(0.1)
+    time.sleep(0.2)
     led.value = False
-    time.sleep(0.1)
+    time.sleep(0.2)
+
+
+    """ Test IR Transmit """
+    # test_pulse = pulseio.PulseOut(pwm)
+    # remote.transmit(test_pulse, OKAY)
+    # print("Sent Test IR Signal!", OKAY)
+    # time.sleep(0.2)
+
+
+
+    """ Test IR Readings """
+    # pulses = decoder.read_pulses(pulsein, blocking=False)
+    # print(pulses)
+
+    # if pulses:
+    #     print("Heard", len(pulses), "Pulses:", pulses)
+        
+    #     try:
+    #         # Attempt to convert received pulses into numbers
+    #         received_code = decoder.decode_bits(pulses)
+    #         print("NEC Infrared code received: ", received_code)
+
+    #     except adafruit_irremote.IRNECRepeatException:
+    #         # We got an unusual short code, probably a 'repeat' signal
+    #         print("NEC repeat!")
+    #         continue
+    #     except adafruit_irremote.IRDecodeException as e:
+    #         # Something got distorted or maybe its not an NEC-type remote?
+    #         print("Failed to decode: ", e.args)
+    #         continue
+ 
 
     # this will be a list of returned keys'; [..., ...]
     keys = keypad.pressed_keys
@@ -96,19 +142,5 @@ while True:
             key_dict.clear()
         keyPressed = False
 
-# pulsein = pulseio.PulseIn(board.D13, maxlen=120, idle_state=True)
-# decoder = adafruit_irremote.GenericDecode()
-#
-# # size must match what you are decoding! for NEC use 4
-# received_code = bytearray(4)
-#
-# while True:
-#     pulses = decoder.read_pulses(pulsein)
-#     print("Heard", len(pulses), "Pulses:", pulses)
-#     try:
-#         code = decoder.decode_bits(pulses)
-#         print("Decoded:", code)
-#     except adafruit_irremote.IRNECRepeatException:  # unusual short code!
-#         print("NEC repeat!")
-#     except adafruit_irremote.IRDecodeException as e:     # failed to decode
-#         print("Failed to decode: ", e.args)
+
+print("Got here because exception or end of program")
