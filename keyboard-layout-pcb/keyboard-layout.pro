@@ -1,9 +1,9 @@
-update=11/1/2019 9:09:06 AM
-last_client=kicad
+update=12/10/2019 2:01:59 PM
+last_client=pcbnew
 [pcbnew]
 version=1
 PageLayoutDescrFile=
-LastNetListRead=keyboard-layout4.net
+LastNetListRead=keyboard-layout5.net
 CopperLayerCount=2
 BoardThickness=1.6
 AllowMicroVias=0
@@ -45,7 +45,7 @@ OthersTextUpright=1
 SolderMaskClearance=0
 SolderMaskMinWidth=0
 SolderPasteClearance=0
-SolderPasteRatio=-0
+SolderPasteRatio=0
 [pcbnew/Layer.F.Cu]
 Name=F.Cu
 Type=0
