@@ -8,7 +8,6 @@ import adafruit_matrixkeypad
 
 # -----------------------------------------------------------------
 # State machine using dictonary definitions, as Python does not have switch statements
-
 """
 states:
 0 - Idle
@@ -18,45 +17,36 @@ states:
 4 - Device 3
 5 - Device Programming
 """
+# -----------------------------------------------------------------
 
 """ Global Variables """
 programRunning = True
 
+red = DigitalInOut(board.D11)
+red.direction = Direction.OUTPUT
+red.value = False 
+
+green = DigitalInOut(board.D10)
+green.direction = Direction.OUTPUT
+green.value = False
+
+blue = DigitalInOut(board.D5)
+blue.direction = Direction.OUTPUT
+blue.value = False
+
 # this will be the global state for the remote
 # handles the logic for what the remote does depending on user interaction
-
 deviceState = 0
-
-# LED light    decoder = adafruit_irremote.GenericDecode()
-
-    # size must match
-    # size must match
-#ze must match  -----------------------------------------------------------------------
-#SMD LED on P13
-led = DigitalInOut(board.D13)
-ldef test_ir_reading():
-    pulsein    # size must match    size must # 
-def idle_state():
-    # check from inputs from all oth        # this array will contain tuples ex. (data, data, etc...)
-        saved_datawhat you are decoding! for NEC use 4
-
-i   whi:
-       er states
-    # will be polling loop for global vars
-    pass
-
-
-def test_ir_reading():
-
-    while True:
-        #    whle True:
-     pulseinl        # this array will contain tuples ex. (data, data, etc...)
-       saved_datled.direction = Direction.OUTPUT
-
 
 #----------------------------------------------------------------------------------
 """ Functions """
 
+def heartbeat(pin):
+    while True:
+     pin.value = True
+     time.sleep(0.5)
+     pin.value = False
+     time.sleep(0.5)
 
 # function converts value from a pin to a voltage between 0-3.3V
 def get_voltage(pin):
@@ -64,14 +54,18 @@ def get_voltage(pin):
 
 
 def continuous_updates():
+    
     pass
 
 
 def idle_state():
     # check from inputs from all other states
     # will be polling loop for global vars
+    battery_check_state()
+    heartbeat(red)
     pass
 
+#IR Reading  function 
 def test_ir_reading():
     pulsein = pulseio.PulseIn(board.REMOTEIN, maxlen=120, idle_state=True)
     decoder = adafruit_irremote.GenericDecode()
@@ -104,34 +98,29 @@ def test_ir_reading():
         except adafruit_irremote.IRDecodeException as e:  # failed to decode
             print("Failed to decode: ", e.args)
 
+
+#Battery check 
 def battery_check_state():
+    ledBlinkCount = 10 
     battery_voltage_pin = AnalogIn(board.AD0)
     battery_voltage = get_voltage(battery_voltage_pin)
     print(battery_voltage)
 
-    if battery_voltage < 2.2:
-        ledBlinkCount = 10
-        while ledBlinirection = Direction.OUTPUT
+    if battery_voltage < 3.4:
+        while ledBlinkCount > 10 :
+            blue.value = True
+            time.sleep(0.25)
+            blue.value = False 
+            green.value = True
+            time.sleep(0.25) 
+            green.value = False 
+            ledBlinkCount -=1 
 
-""# LED light
-led = DikCount > 0:
-            led.value = True
-            time.sleep(0.015)
-            led.value = False
-            ledBlinkCboard.D13)
-led.ount -= 1
-
-    count = 10
-    while count > 0:
-        print(batteryfunction converts value from a_voltage_pin.value)
-        count -= 1
-        time.sleep(0.1)
 
 
 def device_1_state():
-    
- to a voltage between 0-3.3V
-def     pass
+
+    pass
     
 
 
@@ -188,8 +177,10 @@ while programRunning:
         print(ex)
 
 # Status LED setup
-# Onboard LED on D13 is always on, and cannot be turned off
+# Onboard LED on D13 is always on, and cannot be turned off --
+#        This was wrong, we had a bad ground
 # However, it may be pulsed using the code below
+#        It still can work 
 
 # led = DigitalInOut(board.D13)
 # led.direction = Direction.OUTPUT
@@ -200,38 +191,3 @@ while programRunning:
 #     led.value = False
 #     time.sleep(0.4)
 
-
-# --------------------------------------------------------------------
-# RGB LED code section. See schematic for pin usage
-
-# red = DigitalInOut(board.D11)
-# red.direction = Direction.OUTPUT
-
-# green =DigitalInOut(board.DXX)
-# green.direction = Direction.OUTPUT
-
-# blue = DigitalInOut(board.DXX)
-# blue.direction = Direction.OUTPUT
-
-
-# -----------------------------------------------------------------------
-# while True:
-#     led.value = True
-#     time.sleep(0.4)
-
-#     led.value = False
-#     time.sleep(0.4)
-
-#     print(red.value)
-# --------------------------------------------------------------------------------------
-# Keyboard matrix setup
-
-cols = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1)]
-rows = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
-
-      # Rows with corresponding pins in digital modes
-keys = (('Power', 'Source'),  # Set up up as seen in remote diagram
-        ('Volume+', 'VChannel+'),
-        ('Volume-', 'Channel-'),
-        ('F1', 'F2'),
-        ('F3', 'F4'))
