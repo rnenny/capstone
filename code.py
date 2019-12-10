@@ -10,13 +10,13 @@ import adafruit_matrixkeypad
 # RGB LED code section. See schematic for pin usage
 # Red - D9
 # Green - D10
-# Blue - D5 
-# NEEDED TO INITILIZED PIN VALUES OR WONKY STUFF HAPPENS 
+# Blue - D5
+# NEEDED TO INITILIZED PIN VALUES OR WONKY STUFF HAPPENS
 # CircuitPython takes care of active low pins interanally?
-# In this case False = False, as it would on active high pins 
+# In this case False = False, as it would on active high pins
 red = DigitalInOut(board.D9)
 red.direction = Direction.OUTPUT
-red.value = False
+red.value = True
 
 green =DigitalInOut(board.D10)
 green.direction = Direction.OUTPUT
@@ -31,36 +31,47 @@ led = DigitalInOut(board.D13)
 led.direction = Direction.OUTPUT
 # led.value = True
 # --------------------------------------------------------------------
-#Init IR recievers 
+#Init IR recievers
 ir_recieve1 = DigitalInOut(board.D12)
-ir_recieve1.value = 0
-ir_recieve2 = DigitalInOut(board.D13)
-ir_recieve2.value = 0
+ir_recieve1.direction = Direction.INPUT
+#ir_recieve1.value = 0
+
+#ir_recieve2 = DigitalInOut(board.D13)
+#ir_recieve2.direction =  Direction.INPUT
+#ir_recieve2.value = 0
 
 # --------------------------------------------------------------------
 mfet = DigitalInOut(board.D11)
-mfet.value = 1 
+mfet.direction = Direction.OUTPUT
+mfet.value = 1
 
 
-
-cols = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
-rows = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1)]
+# Oh fuck, oh shit I think the diodes are in backwards
+# only workds when rows and colums are switched lmao
+# Trying to make a software fix for this hardware fuckup
+# Going to try swapping them. If not..?
 
 key_dict = {}
+
+# Row D6 is now enabled/initialized yet
+rows = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1, board.A2, board.A3, board.D6)]
+cols = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
+
 keys = [
-    ["Power", "Volume+"],
-    ["Source", "Channel+"]
+    ["Power", "Volume+", "Volume-", "F1", "F3"],
+    ["Source", "Channel+", "Channel-", "F2",  "F4" ],
 ]
 
-keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
+
+keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, rows, keys)
 keyPressed = False
 
 while True:
     # Blink LED
     led.value = True
-    time.sleep(0.2)
+    time.sleep(0.1)
     led.value = False
-    time.sleep(0.2)
+    time.sleep(0.1)
 
     # this will be a list of returned keys'; [..., ...]
     keys = keypad.pressed_keys
