@@ -428,56 +428,67 @@ pin12
 Wire Wire Line
 	5250 5500 5400 5500
 $Comp
+L Device:LED_ARGB D1
+U 1 1 5DB4EFC4
+P 4250 2000
+F 0 "D1" V 4296 1670 50  0000 R CNN
+F 1 "LED_ARGB" V 4205 1670 50  0000 R CNN
+F 2 "LEDs:LED_D5.0mm-4" H 4250 1950 50  0001 C CNN
+F 3 "~" H 4250 1950 50  0001 C CNN
+	1    4250 2000
+	0    -1   -1   0   
+$EndComp
+$Comp
 L Device:R R1
 U 1 1 5DB5148C
-P 4450 2250
-F 0 "R1" H 4520 2296 50  0000 L CNN
-F 1 "100" H 4520 2205 50  0000 L CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 4380 2250 50  0001 C CNN
-F 3 "~" H 4450 2250 50  0001 C CNN
-	1    4450 2250
-	-1   0    0    1   
+P 4050 2550
+F 0 "R1" H 4120 2596 50  0000 L CNN
+F 1 "100" H 4120 2505 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 3980 2550 50  0001 C CNN
+F 3 "~" H 4050 2550 50  0001 C CNN
+	1    4050 2550
+	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R2
 U 1 1 5DB51AFC
-P 4250 1950
-F 0 "R2" H 4320 1996 50  0000 L CNN
-F 1 "22" H 4320 1905 50  0000 L CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 4180 1950 50  0001 C CNN
-F 3 "~" H 4250 1950 50  0001 C CNN
-	1    4250 1950
-	-1   0    0    1   
+P 4250 2850
+F 0 "R2" H 4320 2896 50  0000 L CNN
+F 1 "22" H 4320 2805 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 4180 2850 50  0001 C CNN
+F 3 "~" H 4250 2850 50  0001 C CNN
+	1    4250 2850
+	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R3
 U 1 1 5DB51F49
-P 4050 1650
-F 0 "R3" H 4120 1696 50  0000 L CNN
-F 1 "22" H 4120 1605 50  0000 L CNN
-F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 3980 1650 50  0001 C CNN
-F 3 "~" H 4050 1650 50  0001 C CNN
-	1    4050 1650
-	-1   0    0    1   
+P 4450 3150
+F 0 "R3" H 4520 3196 50  0000 L CNN
+F 1 "22" H 4520 3105 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 4380 3150 50  0001 C CNN
+F 3 "~" H 4450 3150 50  0001 C CNN
+	1    4450 3150
+	1    0    0    -1  
 $EndComp
-Text GLabel 4450 1950 2    50   Input ~ 0
+Text GLabel 4050 2850 0    50   Input ~ 0
 red
-Text GLabel 4250 1650 2    50   Input ~ 0
+Text GLabel 4250 3150 0    50   Input ~ 0
 green
-Text GLabel 4050 1350 2    50   Input ~ 0
+Text GLabel 4450 3450 0    50   Input ~ 0
 blue
 Wire Wire Line
-	4450 2400 4450 2600
+	4050 2400 4050 2200
 Wire Wire Line
-	4250 2600 4250 2100
+	4250 2200 4250 2700
 Wire Wire Line
-	4050 2600 4050 1800
+	4450 2200 4450 3000
 Wire Wire Line
-	4250 1800 4250 1650
+	4250 3000 4250 3150
 Wire Wire Line
-	4450 2100 4450 1950
+	4050 2700 4050 2850
 Wire Wire Line
-	4050 1500 4050 1350
+	4450 3300 4450 3450
 Text GLabel 7950 2950 0    50   Input ~ 0
 row0
 Text GLabel 7950 3050 0    50   Input ~ 0
@@ -683,8 +694,12 @@ Wire Wire Line
 Connection ~ 7950 2650
 Wire Wire Line
 	7950 2650 8100 2650
+Text GLabel 4200 1550 0    50   Input ~ 0
+3V
 Wire Wire Line
-	4250 3250 4250 3000
+	4200 1550 4250 1550
+Wire Wire Line
+	4250 1550 4250 1800
 Text GLabel 5400 5300 2    50   Input ~ 0
 3V
 Wire Wire Line
@@ -693,26 +708,4 @@ Text GLabel 5450 4300 2    50   Input ~ 0
 3V
 Wire Wire Line
 	5450 4300 5300 4300
-$Comp
-L keyboard_parts:GND #PWR01
-U 1 1 5DEEC9A8
-P 4250 3250
-F 0 "#PWR01" H 4250 3300 20  0001 C CNN
-F 1 "GND" H 4250 3150 30  0000 C CNN
-F 2 "" H 4250 3250 60  0000 C CNN
-F 3 "" H 4250 3250 60  0000 C CNN
-	1    4250 3250
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:LED_RCBG D1
-U 1 1 5DEFA295
-P 4250 2800
-F 0 "D1" V 4296 2470 50  0000 R CNN
-F 1 "LED_RCBG" V 4205 2470 50  0000 R CNN
-F 2 "LED_THT:LED_D5.0mm-4_RGB" H 4250 2750 50  0001 C CNN
-F 3 "~" H 4250 2750 50  0001 C CNN
-	1    4250 2800
-	0    -1   -1   0   
-$EndComp
 $EndSCHEMATC

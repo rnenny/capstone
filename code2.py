@@ -5,7 +5,6 @@ import board
 from digitalio import DigitalInOut, Direction, Pull
 import digitalio
 from analogio import AnalogIn
-import pulseio
 import adafruit_matrixkeypad
 
 # -----------------------------------------------------------------
@@ -23,8 +22,7 @@ states:
 
 """ Global Variables """
 programRunning = True
-IR_PIN1 = board.D2  # Pin connected to IR receiver.
-IR_PIN2 = board.D2  # Pin connected to IR receiver.
+
 # this will be the global state for the remote
 # handles the logic for what the remote does depending on user interaction
 
@@ -89,7 +87,7 @@ def battery_check_state():
     battery_voltage = get_voltage(battery_voltage_pin)
     print(battery_voltage)
 
-    if battery_voltage < 3.3:
+    if battery_voltage < 2.2:
         ledBlinkCount = 10
         while ledBlinkCount > 0:
             led.value = True
