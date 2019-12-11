@@ -355,23 +355,23 @@ $EndComp
 $Comp
 L Device:R R4
 U 1 1 5DB26809
-P 6000 1650
-F 0 "R4" H 6070 1696 50  0000 L CNN
-F 1 "27" H 6070 1605 50  0000 L CNN
-F 2 "Resistors_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal" V 5930 1650 50  0001 C CNN
-F 3 "~" H 6000 1650 50  0001 C CNN
-	1    6000 1650
+P 6000 1850
+F 0 "R4" H 6070 1896 50  0000 L CNN
+F 1 "27" H 6070 1805 50  0000 L CNN
+F 2 "Resistors_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal" V 5930 1850 50  0001 C CNN
+F 3 "~" H 6000 1850 50  0001 C CNN
+	1    6000 1850
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D2
 U 1 1 5DB2831D
-P 6000 2150
-F 0 "D2" V 6039 2033 50  0000 R CNN
-F 1 "LED" V 5948 2033 50  0000 R CNN
-F 2 "LEDs:LED_D5.0mm" H 6000 2150 50  0001 C CNN
-F 3 "~" H 6000 2150 50  0001 C CNN
-	1    6000 2150
+P 6000 2250
+F 0 "D2" V 6039 2133 50  0000 R CNN
+F 1 "LED" V 5948 2133 50  0000 R CNN
+F 2 "LEDs:LED_D5.0mm" H 6000 2250 50  0001 C CNN
+F 3 "~" H 6000 2250 50  0001 C CNN
+	1    6000 2250
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -385,18 +385,12 @@ F 3 "~" H 5900 2700 50  0001 C CNN
 	1    5900 2700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6000 2300 6000 2500
-Wire Wire Line
-	6000 1800 6000 2000
 Text GLabel 9600 2550 2    50   Input ~ 0
 VBAT
 NoConn ~ 8100 2550
 NoConn ~ 8100 2750
-Text GLabel 6000 1300 0    50   Input ~ 0
+Text GLabel 5600 1650 0    50   Input ~ 0
 VBAT
-Wire Wire Line
-	6000 1300 6000 1500
 $Comp
 L Interface_Optical:TSOP384xx U1
 U 1 1 5DB358DF
@@ -546,10 +540,8 @@ Wire Wire Line
 	9400 3250 9600 3250
 Text GLabel 9600 3050 2    50   Output ~ 0
 mFET
-Text GLabel 5550 2700 0    50   Input ~ 0
+Text GLabel 5650 2700 0    50   Input ~ 0
 mFET
-Wire Wire Line
-	5550 2700 5700 2700
 Wire Wire Line
 	7950 3450 8100 3450
 Text GLabel 9600 3350 2    50   Input ~ 0
@@ -672,17 +664,6 @@ Wire Wire Line
 	5550 4700 5550 4750
 Wire Wire Line
 	5300 4700 5550 4700
-$Comp
-L keyboard_parts:GND #PWR0108
-U 1 1 5DC40DB6
-P 6000 3150
-F 0 "#PWR0108" H 6000 3200 20  0001 C CNN
-F 1 "GND" H 6000 3050 30  0000 C CNN
-F 2 "" H 6000 3150 60  0000 C CNN
-F 3 "" H 6000 3150 60  0000 C CNN
-	1    6000 3150
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7250 2850 7250 2900
 Text GLabel 7850 2650 0    50   Input ~ 0
@@ -708,4 +689,18 @@ Text GLabel 5450 4300 2    50   Input ~ 0
 3V
 Wire Wire Line
 	5450 4300 5300 4300
+Text GLabel 5600 3150 0    50   Input ~ 0
+GND
+Wire Wire Line
+	5600 3150 6000 3150
+Wire Wire Line
+	5650 2700 5700 2700
+Wire Wire Line
+	5600 1650 6000 1650
+Wire Wire Line
+	6000 1650 6000 1700
+Wire Wire Line
+	6000 2000 6000 2100
+Wire Wire Line
+	6000 2400 6000 2500
 $EndSCHEMATC
