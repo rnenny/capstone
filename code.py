@@ -72,10 +72,11 @@ mfet.direction = Direction.OUTPUT
 mfet.value = 1
 
 
-# Oh fuck, oh shit I think the diodes are in backwards
-# only workds when rows and colums are switched lmao
-# Trying to make a software fix for this hardware fuckup
-# Going to try swapping them. If not..?
+#I think the diodes are in backwards? (Need verification)
+# Swapped rows and columms
+# only works when rows and colums are swapped
+# I think I just misunderstood what constitues a row and a column
+# Anyways, this works 
 
 key_dict = {}
 
