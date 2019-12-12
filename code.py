@@ -40,9 +40,9 @@ import adafruit_matrixkeypad
 # In this case False = False, as it would on active high pins
 
 
-# red = DigitalInOut(board.D9)
-# red.direction = Direction.OUTPUT
-# red.value = True
+red = DigitalInOut(board.D9)
+red.direction = Direction.OUTPUT
+red.value = False
 
 green = DigitalInOut(board.D10)
 green.direction = Direction.OUTPUT
@@ -67,9 +67,9 @@ led.direction = Direction.OUTPUT
 #ir_recieve2.value = 0
 
 # --------------------------------------------------------------------
-mfet = DigitalInOut(board.D11)
-mfet.direction = Direction.OUTPUT
-mfet.value = 1
+# mfet = DigitalInOut(board.D11)
+# mfet.direction = Direction.OUTPUT
+# mfet.value = 1
 
 
 #I think the diodes are in backwards? (Need verification)
@@ -104,7 +104,7 @@ received_code = bytearray(4) # size must match what you are decoding! for NEC us
 # pwm out test
 OKAY = bytearray(b'\x88\x1e\xc5 ') #decoded [136, 30, 197, 32]
 remote = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
-pwm = pulseio.PWMOut(board.D9, frequency = 38000, duty_cycle = 2 ** 15)
+pwm = pulseio.PWMOut(D11, frequency = 38000, duty_cycle = 2 ** 15)
 
 while True:
     # Blink LED
