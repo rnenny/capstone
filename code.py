@@ -1,5 +1,5 @@
-
 import time
+import array
 import board
 import digitalio
 from digitalio import DigitalInOut, Direction, Pull
@@ -10,14 +10,14 @@ import pulseio
 
 # -----------------------------------------------------------------
 # State machine using dictonary definitions, as Python does not have switch statements
+
 """
 states:
 0 - Idle
-1 - Battery CHeck
-2 - Device 1
-3 - Device 2
-4 - Device 3
-5 - Device Programming
+1 - Device 1
+2 - Device 2
+3 - Device 3
+4 - Device Programming
 """
 
 # -----------------------------------------------------------------
@@ -26,18 +26,13 @@ states:
 # state of program
 programRunning = True
 
-#red = DigitalInOut(board.D9)
-pwmred = pulseio.PWMOut(board.D9, frequency=60, duty_cycle=30)
-#red.direction = Direction.OUTPUT
-# pwmred.value = False
 
-green = DigitalInOut(board.D10)
-green.direction = Direction.OUTPUT
-green.value = False
+masterDutyCycle = 15000
 
-blue = DigitalInOut(board.D5)
-blue.direction = Direction.OUTPUT
-blue.value = False
+pwmred = pulseio.PWMOut(board.D9, frequency=masterDutyCycle, duty_cycle=0)
+pwmgreen = pulseio.PWMOut(board.D5, frequency=masterDutyCycle, duty_cycle=0)
+pwmblue = pulseio.PWMOut(board.D10, frequency=masterDutyCycle, duty_cycle=0)
+
 
 # Status / Heartbeat LED init
 led = DigitalInOut(board.D13)
@@ -58,6 +53,10 @@ deviceState = 0
 # dictionary for keypresses
 key_dict = {}
 
+# this will be used for storing remote devices when programming
+# will hold the header codes and keys programmed (which are the decoded NEC codes)
+remote_programming_dict = {}
+
 # Row D6 is now enabled/initialized yet
 rows = [digitalio.DigitalInOut(pin) for pin in (board.A0, board.A1, board.A2, board.A3, board.D6)]
 cols = [digitalio.DigitalInOut(pin) for pin in (board.A4, board.A5)]
@@ -67,24 +66,23 @@ keys = [
     ["source", "channel+", "channel-", "f2", "f4"],
 ]
 
-
+# keypad for universal remote board
 keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, rows, keys)
+
+# global bool for if a key is held down
 keyPressed = False
 
 # IR setup
 pulsein = pulseio.PulseIn(board.D12, maxlen=120, idle_state=True)
 decoder = adafruit_irremote.GenericDecode()
 
-# size must match what you are decoding! for NEC use 4
-received_code = bytearray(4)
 
 # Docs for adafruit_irremote: (https://circuitpython.readthedocs.io/projects/irremote/en/latest/api.html#implementation-notes)
 # Article for IR Apple Remote Code: https://www.hackster.io/BlitzCityDIY/circuit-python-ir-remote-for-apple-tv-e97ea0
 # IR Test Code (Apple Remote): https://github.com/BlitzCityDIY/Circuit-Python-Apple-TV-IR-Remote/blob/master/ciruitPython_appleTv_IR-Remote
 # pwm out test
-OKAY = bytearray(b'\x88\x1e\xc5 ')  # decoded [136, 30, 197, 32]
 remote = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
-pwm = pulseio.PWMOut(board.D11, frequency=38000, duty_cycle=2 ** 15)
+pwm = pulseio.PWMOut(board.D11, frequency=30000, duty_cycle=2 ** 14)
 
 # ----------------------------------------------------------------------------------
 """ Functions """
@@ -101,14 +99,25 @@ def check_keypresses():
         keyPressed = True
 
         for key in keys:
+
             # handle reset of deviceState for 'source' key in device_state_3()
-            if key == "source":
-                deviceState += 1
+            # force state to idle
+            if key == "power":
+                deviceState = 0
+
+            elif key == "source":
+                deviceState = 1
+
+            elif key == "f1":
+                deviceState = 4
+
+
 
             if key not in key_dict:
                 key_dict.update({key: 0})
             else:
                 key_dict.update({key: key_dict.get(key) + 1})
+
 
         print(key_dict)
 
@@ -122,12 +131,16 @@ def check_keypresses():
 
 
 def test_ir_transmit():
-    global remote, OKAY, pwm
+    global pwm
 
-    test_pulse = pulseio.PulseOut(pwm)
-    remote.transmit(test_pulse, OKAY)
+    pulse = pulseio.PulseOut(pwm)
 
-    print("Sent Test IR Signal!", OKAY)
+    pulse_data = [65000, 1000, 65000, 65000, 1000]
+    pulses = array.array('H', pulse_data) 
+
+    remote.transmit(pulse, pulses)
+
+    print("Sent Test IR Signal!", pulses)
     time.sleep(0.2)
 
 
@@ -135,7 +148,6 @@ def test_ir_receive():
     global decoder, pulsein
 
     pulses = decoder.read_pulses(pulsein, blocking=False)
-    print(pulses)
 
     if pulses:
         print("Heard", len(pulses), "Pulses:", pulses)
@@ -163,37 +175,39 @@ def get_voltage(pin):
 
 
 def continuous_updates():
+    # print deviceState
+    print("State: ", deviceState)
     check_keypresses()
 
 
 # Battery check
 def battery_check_state():
-    global pwmred, blue, green, rows
+    global pwmred, pwmgreen, pwmblue, rows, masterDutyCycle
 
     ledBlinkCount = 0
     
     # deinit A0 pin from keypad temp
     rows[0].deinit()
-    time.sleep(0.25)
+    time.sleep(0.15)
 
     battery_voltage_pin = AnalogIn(board.A0)
-    battery_voltage = get_voltage(battery_voltage_pin)
+    battery_voltage = get_voltage(battery_voltage_pin) * 2
 
     print("Battery Check Voltage: ", battery_voltage)
 
-    if battery_voltage < 2:
+    if battery_voltage < 5.4:
         while ledBlinkCount < 5:
-            pwmred.duty_cycle = 6000
+            pwmred.duty_cycle = masterDutyCycle
             time.sleep(0.25)
             pwmred.duty_cycle = 0
 
-            # blue.value = True
-            # time.sleep(0.25)
-            # blue.value = False
+            pwmblue.duty_cycle = masterDutyCycle
+            time.sleep(0.25)
+            pwmblue.duty_cycle = 0
 
-            # green.value = True
-            # time.sleep(0.25)
-            # green.value = False
+            pwmgreen.duty_cycle = masterDutyCycle
+            time.sleep(0.25)
+            pwmgreen.duty_cycle = 0
             
             ledBlinkCount += 1
 
@@ -201,11 +215,13 @@ def battery_check_state():
 
     rows[0] = digitalio.DigitalInOut(board.A0)
 
+
+
 def idle_state():
     # check from inputs from all other states
     # will be polling loop for global vars
     battery_check_state()
-    pass
+
 
 
 def device_1_state():
@@ -220,21 +236,22 @@ def device_1_state():
     deviceState = 0    
 
 
-        
 
 def device_2_state():
-
-    pass
+    global deviceState
+    print("State TWO")
+    deviceState = 0
 
 
 def device_3_state():
-
-    pass
+    global deviceState
+    print("State THREE")
+    deviceState = 0
 
 
 def device_programming_state():
-
-    pass
+    test_ir_receive()
+    deviceState = 0
 
 
 # handles state of program and device
@@ -246,31 +263,33 @@ while programRunning:
 
     try:
         # put any code that will run regardless of deviceState in this method
+        # KEYBOARD updates
         continuous_updates()
+
 
         if deviceState == 0:
             idle_state()
 
         elif deviceState == 1:
-            battery_check_state()
-
-        elif deviceState == 2:
             device_1_state()
 
-        elif deviceState == 3:
+        elif deviceState == 2:
             device_2_state()
 
-        elif deviceState == 4:
+        elif deviceState == 3:
             device_3_state()
 
-        elif deviceState == 5:
+        elif deviceState == 4:
             device_programming_state()
+        
 
     except KeyboardInterrupt as keyexcept:
         print(keyexcept)
 
     except() as ex:
         print(ex)
+
+
 
 # Status LED setup
 # Onboard LED on D13 is always on, and cannot be turned off --
