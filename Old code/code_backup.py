@@ -78,10 +78,10 @@ mfet.value = 1
 # I think I just misunderstood what constitues a row and a column
 # Anyways, this works 
 
-key_dict = {}
+key_pressed_dict = {}
 
 # Row D6 is now enabled/initialized yet
-rows = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1, board.A2, board.A3, board.D6)]
+keypad_rows = [digitalio.DigitalInOut(x) for x in (board.A0, board.A1, board.A2, board.A3, board.D6)]
 cols = [digitalio.DigitalInOut(x) for x in (board.A4, board.A5)]
 
 keys = [
@@ -90,7 +90,7 @@ keys = [
 ]
 
 
-keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, rows, keys)
+remote_keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, keypad_rows, keys)
 keyPressed = False
 
 # IR setup
@@ -103,8 +103,8 @@ received_code = bytearray(4) # size must match what you are decoding! for NEC us
 # IR Test Code (Apple Remote): https://github.com/BlitzCityDIY/Circuit-Python-Apple-TV-IR-Remote/blob/master/ciruitPython_appleTv_IR-Remote
 # pwm out test
 OKAY = bytearray(b'\x88\x1e\xc5 ') #decoded [136, 30, 197, 32]
-remote = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
-pwm = pulseio.PWMOut(board.D9, frequency = 38000, duty_cycle = 2 ** 15)
+ir_transmitter = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
+ir_transmitter_pwm = pulseio.PWMOut(board.D9, frequency = 38000, duty_cycle =2 ** 15)
 
 while True:
     # Blink LED
@@ -145,26 +145,26 @@ while True:
  
 
     # this will be a list of returned keys'; [..., ...]
-    keys = keypad.pressed_keys
+    keys = remote_keypad.pressed_keys
 
     # if we have any keys, then loop over the key names
     if keys:
         keyPressed = True
 
         for key in keys:
-            if key not in key_dict:
-                key_dict.update({key: 0})
+            if key not in key_pressed_dict:
+                key_pressed_dict.update({key: 0})
             else:
-                key_dict.update({key: key_dict.get(key) + 1})
+                key_pressed_dict.update({key: key_pressed_dict.get(key) + 1})
 
-        print(key_dict)
+        print(key_pressed_dict)
         # print("Pressed: ", keys)
 
     time.sleep(0.015)
 
     if len(keys) < 1:
-        if len(key_dict) > 0:
-            key_dict.clear()
+        if len(key_pressed_dict) > 0:
+            key_pressed_dict.clear()
         keyPressed = False
 
 

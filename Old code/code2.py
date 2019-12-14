@@ -52,10 +52,10 @@ led.direction = Direction.OUTPUT
 deviceState = 0
 
 # dictionary for keypresses
-key_dict = {}
+key_pressed_dict = {}
 
 # Row D6 is now enabled/initialized yet
-rows = [digitalio.DigitalInOut(pin) for pin in (board.A0, board.A1, board.A2, board.A3, board.D6)]
+keypad_rows = [digitalio.DigitalInOut(pin) for pin in (board.A0, board.A1, board.A2, board.A3, board.D6)]
 cols = [digitalio.DigitalInOut(pin) for pin in (board.A4, board.A5)]
 
 keys = [
@@ -63,7 +63,7 @@ keys = [
     ["Source", "Channel+", "Channel-", "F2", "F4"],
 ]
 
-keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, rows, keys)
+remote_keypad = adafruit_matrixkeypad.Matrix_Keypad(cols, keypad_rows, keys)
 keyPressed = False
 
 # IR setup
@@ -78,15 +78,15 @@ received_code = bytearray(4)
 # IR Test Code (Apple Remote): https://github.com/BlitzCityDIY/Circuit-Python-Apple-TV-IR-Remote/blob/master/ciruitPython_appleTv_IR-Remote
 # pwm out test
 OKAY = bytearray(b'\x88\x1e\xc5 ')  # decoded [136, 30, 197, 32]
-remote = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
-pwm = pulseio.PWMOut(board.D11, frequency=38000, duty_cycle=2 ** 15)
+ir_transmitter = adafruit_irremote.GenericTransmit((9050, 4460), (550, 1650), (570, 575), 575)
+ir_transmitter_pwm = pulseio.PWMOut(board.D11, frequency=38000, duty_cycle=2 ** 15)
 
 # ----------------------------------------------------------------------------------
 """ Functions """
 
 
 def check_keypresses():
-    global keypad, keyPressed, key_dict
+    global remote_keypad, keyPressed, key_pressed_dict
 
     # this will be a list of returned keys'; [..., ...]
     keys = keypad.pressed_keys
@@ -114,9 +114,9 @@ def check_keypresses():
 
 
 def test_ir_transmit():
-    global remote, OKAY
+    global ir_transmitter, OKAY
 
-    test_pulse = pulseio.PulseOut(pwm)
+    test_pulse = pulseio.PulseOut(ir_transmitter_pwm)
     remote.transmit(test_pulse, OKAY)
 
     print("Sent Test IR Signal!", OKAY)
